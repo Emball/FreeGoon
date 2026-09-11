@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FreeGoon
 // @namespace    https://github.com/freegoon
-// @version      3.14
+// @version      4.0
 // @description  Comprehensive age gate remover for SpankBang and TNAFlix
 // @author       you
 // @match        *://spankbang.com/*
