@@ -27,12 +27,9 @@ The extension popup has site toggles at the top and a scrollable directory of 23
 
 ## What it does
 
-| Site | Feature |
+| Site | Features |
 |---|---|
-| SpankBang | Age verification modal removed (client-side cookie spoof) |
-| SpankBang | Signup gate and thumbnail overlays removed |
-| SpankBang | Animated hover previews restored |
-| SpankBang | Search fixed (was redirecting to `/? ` on unverified sessions) |
+| SpankBang | Age gate removed (cookie spoof), signup/overlay removal, hover previews restored, search fixed |
 | TNAFlix | AgeGO verification overlay and blur removed |
 
 **Client-side age gates only.** Server-side verification (e.g. Eporner) cannot be bypassed.
