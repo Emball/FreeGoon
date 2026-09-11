@@ -10,7 +10,7 @@
     <span class="version">v1.0</span>
   </header>
 
-  <section>
+  <section class="settings">
     <div class="site-row">
       <div class="site-label">
         <span class="dot" id="dot-spankbang"></span>
@@ -28,10 +28,8 @@
         <span class="slider"></span>
       </label>
     </div>
-  </section>
 
-  <section>
-    <div class="site-row">
+    <div class="site-row" style="margin-top:8px">
       <div class="site-label">
         <span class="dot" id="dot-tnaflix"></span>
         TNAFlix
@@ -42,6 +40,18 @@
       </label>
     </div>
   </section>
+
+  <div class="dir-header">
+    <span>📋 Full-Length Tube Directory</span>
+  </div>
+
+  <div class="dir-meta">
+    Sites ranked by: pollution → catalog → speed → quality → ads → downloads
+  </div>
+
+  <div class="directory" id="directory">
+    <!-- populated by popup.js -->
+  </div>
 
   <script src="popup.js"></script>
 </body>
