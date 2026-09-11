@@ -1,0 +1,35 @@
+.safety-blur, [class*="safety-blur"],
+.js-modal-overlay,
+.responsive-page.fixed,
+[data-testid="cookie-consent-banner"],
+body > div[class*="fixed"][class*="inset-0"],
+body > div[class*="fixed"][class*="backdrop-blur"],
+body > template + div[class*="fixed"] {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+html.overflow-hidden, body.overflow-hidden,
+html[class*="no-scroll"], body[class*="no-scroll"] {
+    overflow: auto !important;
+}
+
+.blurred, .blur-content, .content-blur, .main-blur, .strong-blur {
+    filter: none !important;
+    backdrop-filter: none !important;
+}
+
+[class*="bg-neutral-900/40"],
+[aria-label="Explicit content locked"],
+div.absolute.inset-0.z-10.flex.items-center.justify-center {
+    display: none !important;
+}
+
+#av-wrapper,
+#advanced-av,
+#av-verification,
+[data-testid="av-advanced-required-modal"],
+[data-testid="av-registration-modal"],
+[data-testid="registration-success-start-av-modal"] {
+    display: none !important;
+}

@@ -1,0 +1,17 @@
+[id^="agego-"] {
+    display: none !important;
+}
+
+#video-player-container, #preroll-container,
+.trailer-player, .lb-image,
+.plyr__video-wrapper video, #video-player-placeholder,
+#video-player-container video, #preroll-container video,
+.plyr__video-wrapper, .plyr__poster, .img-gal {
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+html.overflow-hidden, body.overflow-hidden,
+body.noscroll, html.noscroll {
+    overflow: auto !important;
+}

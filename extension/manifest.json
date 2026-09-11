@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "FreeGoon",
+  "version": "1.0",
+  "description": "Comprehensive age gate remover for SpankBang and TNAFlix.",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "*://spankbang.com/*",
+    "*://*.spankbang.com/*",
+    "*://tnaflix.com/*",
+    "*://www.tnaflix.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://spankbang.com/*", "*://*.spankbang.com/*"],
+      "js": ["content/shared.js", "content/spankbang.js"],
+      "css": ["content/spankbang.css"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["*://tnaflix.com/*", "*://www.tnaflix.com/*"],
+      "js": ["content/shared.js", "content/tnaflix.js"],
+      "css": ["content/tnaflix.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "block_rules",
+        "enabled": true,
+        "path": "rules/block.json"
+      }
+    ]
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": "popup/icon.png"
+  }
+}

@@ -1,0 +1,124 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  width: 240px;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  background: #111;
+  color: #e0e0e0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid #222;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.version {
+  font-size: 11px;
+  color: #555;
+}
+
+section {
+  padding: 10px 14px;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.site-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 28px;
+}
+
+.site-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: #ccc;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #333;
+  transition: background 0.2s;
+}
+
+.dot.active { background: #4caf50; }
+
+.sub-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 26px;
+  padding-left: 15px;
+  margin-top: 4px;
+  color: #666;
+}
+
+.sub-row.hidden { display: none; }
+
+/* Toggle switch */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 18px;
+}
+
+.toggle.small {
+  width: 28px;
+  height: 15px;
+}
+
+.toggle input { display: none; }
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #333;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.slider::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 3px;
+  top: 3px;
+  background: #666;
+  border-radius: 50%;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.toggle.small .slider::before {
+  width: 9px;
+  height: 9px;
+  left: 3px;
+  top: 3px;
+}
+
+input:checked + .slider { background: #1a3a1a; }
+input:checked + .slider::before {
+  transform: translateX(16px);
+  background: #4caf50;
+}
+
+.toggle.small input:checked + .slider::before {
+  transform: translateX(13px);
+}
