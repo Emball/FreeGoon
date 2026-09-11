@@ -1,7 +1,7 @@
 # AGENTS.md
 
 ## Purpose
-Browser age gate remover for adult tube sites. Two delivery formats maintained in parallel: a Tampermonkey userscript and a Chrome extension (sideloaded via developer mode).
+Browser assistant for adult tube sites ("goon assistant"). Handles age gate removal, UX improvements, and long-term goal of cross-site unified search. Two delivery formats maintained in parallel: a Tampermonkey userscript and a Chrome extension (sideloaded via developer mode).
 
 ## Repo Structure
 ```
@@ -18,7 +18,7 @@ extension/
   rules/
     block.json            — declarativeNetRequest: blocks agego.com network requests
   popup/
-    popup.html/css/js     — settings UI, writes to chrome.storage.sync
+    popup.html/css/js     — settings UI + scrollable site directory
 ```
 
 ## Architecture
@@ -28,6 +28,28 @@ Single IIFE. SITES object keyed by base domain. Each entry has `css`, `early()`,
 
 ### Extension
 CSS injected via manifest `content_scripts`. JS split per site. `shared.js` loaded first on all sites. Settings read from `chrome.storage.sync` via `getSetting()` before any logic runs. agego.com blocked at network level via `declarativeNetRequest` (stronger than the userscript's MutationObserver script removal).
+
+### Popup
+Two sections: site toggles at top, scrollable directory table below. Directory is rendered from a JS data array in popup.js — update that array when the tube-sites list changes. Popup width: 480px, max-height: 600px with scroll.
+
+## Roadmap
+
+### Cross-Site Search (priority next feature)
+Goal: user types a performer/scene query in the popup, results aggregated from multiple sites into a unified view.
+
+Planned approach:
+- Search input in popup triggers background script
+- Background opens tabs (or uses `fetch` where CORS allows) to each site's search URL
+- Per-site content script reads results off the DOM, normalizes to a common schema: `{ title, url, thumb, duration, site, quality }`
+- Results message back to popup for display
+- Each SITES entry in the extension gets an optional `search` config: `{ url: q => '...', results: '.selector' }` or a full scraper function
+
+Prior attempt was a Python scraper — abandoned because bot detection and CORS made it unworkable outside the browser. Browser context solves both problems: extension is already trusted, no CORS issues on injected scripts, no bot fingerprinting.
+
+### Other Planned Features
+- Per-site UX improvements as they come up (same pattern as SpankBang hover previews)
+- Expand age gate support to more sites
+- Possibly: scene bookmarking / save list across sites
 
 ## Adding a New Site
 
@@ -45,7 +67,7 @@ CSS injected via manifest `content_scripts`. JS split per site. `shared.js` load
 Tampermonkey: semver in `@version` header. Extension: `version` field in `manifest.json`. Bump both on any functional change. Commit message: version numbers only.
 
 ## Known Constraints
-- SpankBang serves `<video>` elements only to verified sessions. Hover previews are reconstructed client-side by reading `data-src` from `<source>` elements and playing CDN assets directly.
-- SpankBang age gate uses a client-side `av` cookie check. Cookie is spoofed at document-start.
+- SpankBang serves `<video>` elements only to verified sessions. Hover previews reconstructed client-side from `data-src` on `<source>` elements — CDN assets are public, no auth required.
+- SpankBang age gate: client-side `av` cookie check. Spoofed at document-start.
 - TNAFlix uses AgeGO third-party widget. Blocked at network level in extension; MutationObserver script removal in userscript.
-- Eporner uses server-side verification — not bypassable, not supported.
+- Eporner: server-side verification, not bypassable, not supported.
